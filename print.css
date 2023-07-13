@@ -1,0 +1,390 @@
+@media print {
+  @page {
+    margin:0;
+    margin-bottom: 1cm;
+    margin-top: 1cm;
+    size: Letter;
+  }
+  @page:first{ }
+ .page-wrapper { min-height: 0; }
+  html { font-size: 100%; }
+  .generate-wrapper { padding: 0;}  
+  .margin-top-page-two { margin-top: 1cm; height: 0; display: initial;}
+  body { margin: 0 1cm 1cm 1cm;  }
+  body, h1.page-heading, .section-title h2 , .section-content h5, .section-content h4, .section-content h3, .section-content span, .section-content p, .tabs label, .bottom p { font-family: Arial, Helvetica, sans-serif; !important; }
+  main { margin-top: 0!important; }
+  h1 { font-size: 1.3rem; }
+  h2,  .tabs label { font-size: 1.2rem; }
+  h3, .page-title { font-size: 1.1rem; color: var(--black) }
+  .checkboxes-wrapper label { font-size: 1rem;}
+  h4 { font-size: 0.9rem; color: var(--black); }
+  p, input, textarea, select, option, th, td, .ab-print-text, h5 { color: var(--black); font-size:0.8rem;  } 
+  h5 { font-size:0.9rem; font-weight: 500; }
+  .sections-wrapper { margin: 0rem; }
+  .btn, .extra-space, .info-icon, header, footer, .first-assist-wrapper { display: none; }
+  input, textarea, select, option {
+    outline: none;
+    border: none;
+    resize: none!important; 
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    min-height: 1rem!important;
+    color: var(--black);
+    border-radius: 0;
+  }
+  input, #strategic-objective { margin-left: 0.2rem;}
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--black)!important;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+  textarea { padding-top: 0.7rem; }
+  .orange-section, .blue-section, .green-section {
+    border: none;
+  }
+  #date {
+    display: initial;
+  }
+  .swift-logo { width: 15rem; }
+
+  .orange-section h3 { color: var(--orange); }
+  .blue-section h3 { color: var(--blue); }
+  .green-section h3 { color: var(--green); }
+
+  #carrots, #sticks, #oa, #ra {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    padding-top: 0.3rem;
+  }
+  .form-group { 
+    margin-top: 0!important;
+    margin-bottom: 0.5rem!important;
+    display: block;
+  }
+
+  ::-webkit-input-placeholder { 
+    color: transparent;
+  }
+  :-moz-placeholder { 
+      color: transparent;
+  }
+  ::-moz-placeholder { 
+      color: transparent;
+  }
+  :-ms-input-placeholder { 
+      color: transparent;
+  }
+  ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+      color: transparent;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .orange-section .section-title {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; 
+    background-color: var(--orange) !important;
+  }
+  .blue-section .section-title {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; 
+    background-color: var(--blue) !important;
+  }
+  .green-section .section-title {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; 
+    background-color: var(--green) !important;
+  }
+  .section-title, .section-subtitle {
+    justify-content: center;
+    clip-path: polygon(0% 0%, 98% 0%, 100% 50%, 98% 100%, 0% 100%);
+    padding: 0.3rem;
+  }
+
+  .tabs-block { margin: 0.625rem;}
+  .tabs [type=radio]:checked + label, .tabs label {
+    border: 2px solid var(--green);
+    border-right: 0;
+    color: var(--green);
+    padding: 0.2rem;
+    margin-right: 1.125rem;
+  }
+  .tabs .tab-heading:after {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-top: 2px solid var(--green);
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid var(--green);
+    top: calc(50% - 0.75rem);
+    left: calc( 100% - 0.6875rem);
+    content: "";
+    transform: rotate(45deg);
+    background-color: transparent;
+  }
+
+.checkboxes-wrapper label { color: var(--black);}
+
+  .special-flex {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .special-flex.items-start {
+    align-items: flex-start;
+  }
+  .no-flex-on-print {
+    display: block;
+  }
+  #meeting-date { width: auto; }
+  #account { width: calc( 100% - 5.3rem ); }
+  #key-contact { width: calc( 100% - 11rem ); }
+  #other-contact { width: calc( 100% - 12rem ); }
+  #meeting-lead { width: calc( 100% - 7.8rem ); }
+  #meeting-coach { width: calc( 100% - 6.8rem ); }
+  #strategic-objective { width: calc( 100% - 11.3rem );}
+  #strategic-objective, #draft-proposal { padding-top:0 }
+
+  .tabs .tab { display: block !important; }
+
+  .steps-container input:checked ~ .checkmark {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; 
+    background-color: var(--green);
+  }
+
+  .strategic-objective { width: auto; }
+  h4.mr-05 { margin: 0; }
+  .os-wrapper, .steps-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+  .steps-wrapper .special-flex { gap: 0.625rem; }
+  .steps-wrapper .steps-container { height: 2.1875rem; }
+  .objection, .notes {
+    padding: 0;
+    overflow: visible;
+  }
+  .objection-row {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .objection-row textarea, .objection-row .objection-heading, .objection-row .notes-heading {  width: calc( 50% - 5.5rem); }
+  .objection-row select, .objection-row .strategy-heading { width: 11rem; }
+  #opening, #draft-proposal { min-height: 0rem!important; }
+  .arrow-wrapper, .subsection-arrow-wrapper { display: none; }
+  .section-content, .subsection-content {
+    height: auto;
+    overflow: visible;
+  }
+  .section-content { padding: 1rem!important; }
+  .section-content#green-section{ padding: 0!important;}
+  .tab { padding: 0.5rem 0.3rem!important; }
+  .pr-1 {padding-right: 0.6rem;}
+  .pl-1 {padding-left: 0rem;}
+
+  .pcp-section { margin-bottom: 0.5rem!important; }
+  .tabs label.steps-container { border: none; }
+
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1cm;
+  }
+  .bottom br { display: none;}
+  .bottom p { margin: 0; color: var(--black)}
+
+   .private-notes { display: block;}
+   hr {
+    border: none;
+    border-top: 1px dotted var(--darkGrey);
+    color: #fff;
+    background-color: #fff;
+    height: 1.875rem;
+    width: 100%;
+   }
+  .text-right { text-align: right; }
+  .steps-wrapper { max-height: 2.5rem;}
+  .mb-1 { margin-bottom: 1rem!important;}
+  .mb-0-print { margin-bottom: 0rem!important;}
+  .actions,.asterix { display: none; }
+  .mt-05 { margin-top: 0;}
+  textarea:placeholder-shown {
+    display: none;
+  }
+  .hide-on-print { 
+    display: none!important; 
+    margin:0!important;
+    height: 0!important;
+  }
+  
+  .members-notes, .positivity { border-right:0 !important;}
+
+  .influence, .positivity, .contact, .title { 
+    width: 5.2rem;
+    max-width: 5.2rem;
+  }
+  .table-carrots, .table-sticks { width: calc( 50% - 20.8rem);}
+
+  #our-team-members-table th, #their-key-players-table th {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background-color: var(--lightGrey)!important;
+  }
+
+  #our-team-members-table td, #their-key-players-table td {
+    padding-right: 3px!important;
+  }
+
+  #client-goals, #client-pressures, #historical-business, #total-obtainable-business, #SO-description, #our-home-ground, #our-overall-strategy {
+    height: auto;
+    padding: 0;
+    padding-top:0.5rem;
+
+  }
+  .strategic-objective-wrapper {
+    /* print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background-color: var(--lightGrey)!important; */
+    background-color: var(--white);
+    padding: 0.5rem;
+    padding-top:0;
+    padding-bottom:0;
+  }
+  table, .page-break-avoid { page-break-inside : avoid }
+  .orange-on-print {
+    filter: invert(43%) sepia(58%) saturate(3170%) hue-rotate(347deg) brightness(98%) contrast(90%);
+  }
+
+  .PUM-AB { width: 31rem; }
+  .PUM-AB {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .PUM-wrapper {
+    width: 21em;
+    margin-left: -1.3rem;
+  }
+  .AB-wrapper {
+    width: 10rem; 
+    display: flex;
+  }
+  .ab-print-text { 
+    align-items: center; 
+    display: block;
+    margin-top: 11px;
+  }
+  
+  #acheived-by-date { 
+    width: 6.5rem; 
+    padding: 0!important; 
+    margin-top: 10px;
+  }
+
+
+/* Manager reviews */
+  .purple-section h3 { color: var(--purple); }
+
+  #manager-feedback { 
+    padding: 0rem !important;
+    min-height: 0rem !important;
+    max-height: 5.5rem;
+    height: auto;
+  }
+  .italic-on-print {font-style: italic;}
+  .purple-section, .subsection-content { border: none; }
+  .purple-section .section-title {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact; 
+      background-color: var(--purple) !important;
+    }
+
+  .section-subtitle {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; 
+    background-color: var(--purpleWithOpacity);
+    border: none;
+  }
+  .special-flex {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .special-flex.items-start {
+    align-items: flex-start;
+  }
+  .no-flex-on-print {
+    display: block;
+  }
+
+ .meets input:checked ~ .checkmark {
+  background-color: var(--green);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact; 
+}
+  .gap input:checked ~ .checkmark {
+    background-color: var(--orange);
+    border-color: var(--orange);
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+  }
+  .subsection-wrapper.open .subsection-content { 
+    display: block; 
+    padding: 0.5rem;
+    padding-bottom: 0;
+    border: none;
+  }
+  .subsection-wrapper { margin-top: 0.5rem; }
+
+  .plan-competency, .pc-feedback { width: 100%;}
+  .plan-competency { margin-bottom: 1rem; }
+  .pc-feedback { padding-bottom: 0!important;}
+
+  .meets-form-group {padding: 0.75rem!important; }
+  .meets-form-group.special-pb, .p-1.special-pb {
+    padding-bottom: 0;
+  }
+
+  .meets-form-group.grey-bg {
+    background-color: var(--lightGrey);
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+  }
+
+  #rep-name, #m-account { width: calc( 100% - 5.8rem );}
+  #m-meeting-date { width: calc( 100% - 9rem );}
+
+  .textarea-style { 
+    height: 1rem; 
+    padding:0!important;
+  }
+  .p-1, .meets-form-group { padding: 1rem; }
+  .form-group .special-flex { margin-bottom: 0!important;}
+  .meets, .gap { 
+    width: 3rem;
+    text-align: center;
+  }
+  .discover-row textarea {
+    min-height: 2.4rem !important;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .textarea-style { margin-top: 0.3rem!important; min-height: 1rem; max-height: 1rem;}
+	
+}
