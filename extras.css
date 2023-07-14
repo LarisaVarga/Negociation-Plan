@@ -283,3 +283,10 @@ a, a:visited {
 .text-red { color: var(--red)}
 .text-yellow { color: var(--yellow)}
 .text-green { color: var(--light-green)}
+
+
+/* Negociation Plan */
+
+.w-40 { width: 40%;}
+.text-center { text-align: center;}
+

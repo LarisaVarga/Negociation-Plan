@@ -148,7 +148,7 @@ function createKeyPlayerRow() {
   // Add event listeners to the select elements to update classes
   var trElement = tbodyKeyPlayers.lastElementChild;
   var selectElements = trElement.querySelectorAll('select');
-  console.log(selectElements)
+  // console.log(selectElements)
   selectElements.forEach(function (selectElement) {
     selectElement.addEventListener('change', function () {
       var selectedOptionClass = this.options[this.selectedIndex].className;
@@ -185,3 +185,88 @@ function allowUncheck(e) {
     });
 }
 
+/* Negociation Plan */
+
+
+// var circles = document.querySelectorAll('.circle');
+
+// for (let i = 0; i < circles.length; i++) {
+//   circles[i].addEventListener('click', function () {
+//     var clickedCircle = this;
+//     var parentColumn = clickedCircle.closest('.circles-col');
+//     var sameColumnCircles = parentColumn.querySelectorAll('.circle');
+
+//     if (clickedCircle.classList.contains('orange-circle')) {
+//       clickedCircle.classList.remove('orange-circle');
+//     } else {
+//       for (let j = 0; j < sameColumnCircles.length; j++) {
+//         sameColumnCircles[j].classList.remove('orange-circle');
+//       }
+//       clickedCircle.classList.add('orange-circle');
+//     }
+//   });
+// }
+
+
+
+var circles = document.querySelectorAll('.circle');
+
+for (let i = 0; i < circles.length; i++) {
+  circles[i].addEventListener('click', function () {
+    var clickedCircle = this;
+    var parentColumn = clickedCircle.closest('.circles-col');
+    var sameColumnCircles = parentColumn.querySelectorAll('.circle');
+
+    if (clickedCircle.classList.contains('orange-circle')) {
+      clickedCircle.classList.remove('orange-circle');
+    } else {
+      for (let j = 0; j < sameColumnCircles.length; j++) {
+        sameColumnCircles[j].classList.remove('orange-circle');
+      }
+      clickedCircle.classList.add('orange-circle');
+      connectCircles();
+    }
+  });
+}
+
+function connectCircles() {
+  var clickedCircles = document.querySelectorAll('.orange-circle');
+  console.log(clickedCircles.length)
+
+
+  if (clickedCircles.length === 3) {
+    var circle1 = clickedCircles[0]
+    var circle2 = clickedCircles[1]
+    var circle3 = clickedCircles[2]
+    var x1 = circle1.offsetLeft + circle1.offsetWidth / 2;
+    var y1 = circle1.offsetTop + circle1.offsetHeight / 2;
+    var x2 = circle2.offsetLeft + circle2.offsetWidth / 2;
+    var y2 = circle2.offsetTop + circle2.offsetHeight / 2;
+    var x3 = circle3.offsetLeft + circle3.offsetWidth / 2;
+    var y3 = circle3.offsetTop + circle3.offsetHeight / 2;
+    console.log(x1, y1, x2, y2, x3, y3)
+    linedraw(x1, y1, x2, y2)
+    linedraw(x2, y2, x3, y3)
+  } else {
+    var lines = document.querySelectorAll('.circle-connecting-line');
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].parentNode.removeChild(lines[i]);
+    }
+  }
+
+}
+
+function linedraw(x1, y1, x2, y2) {
+  if (x2 < x1) {
+    var tmp;
+    tmp = x2; x2 = x1; x1 = tmp;
+    tmp = y2; y2 = y1; y1 = tmp;
+  }
+
+  var lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  var m = (y2 - y1) / (x2 - x1);
+
+  var degree = Math.atan(m) * 180 / Math.PI;
+
+  document.querySelector('.circles-wrapper').innerHTML += "<div class='circle-connecting-line' style='transform-origin: top left; transform: rotate(" + degree + "deg); width: " + lineLength + "px; height: 1px; background: var(--orange); pointer-events: none; z-index:1; position: absolute; top: " + y1 + "px; left: " + x1 + "px;'></div>";
+}
