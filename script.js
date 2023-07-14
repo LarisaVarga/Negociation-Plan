@@ -186,29 +186,6 @@ function allowUncheck(e) {
 }
 
 /* Negociation Plan */
-
-
-// var circles = document.querySelectorAll('.circle');
-
-// for (let i = 0; i < circles.length; i++) {
-//   circles[i].addEventListener('click', function () {
-//     var clickedCircle = this;
-//     var parentColumn = clickedCircle.closest('.circles-col');
-//     var sameColumnCircles = parentColumn.querySelectorAll('.circle');
-
-//     if (clickedCircle.classList.contains('orange-circle')) {
-//       clickedCircle.classList.remove('orange-circle');
-//     } else {
-//       for (let j = 0; j < sameColumnCircles.length; j++) {
-//         sameColumnCircles[j].classList.remove('orange-circle');
-//       }
-//       clickedCircle.classList.add('orange-circle');
-//     }
-//   });
-// }
-
-
-
 var circles = document.querySelectorAll('.circle');
 
 for (let i = 0; i < circles.length; i++) {
@@ -233,7 +210,6 @@ function connectCircles() {
   var clickedCircles = document.querySelectorAll('.orange-circle');
   console.log(clickedCircles.length)
 
-
   if (clickedCircles.length === 3) {
     var circle1 = clickedCircles[0]
     var circle2 = clickedCircles[1]
@@ -253,7 +229,6 @@ function connectCircles() {
       lines[i].parentNode.removeChild(lines[i]);
     }
   }
-
 }
 
 function linedraw(x1, y1, x2, y2) {
