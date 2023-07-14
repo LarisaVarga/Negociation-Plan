@@ -196,9 +196,11 @@ for (let i = 0; i < circles.length; i++) {
 
     if (clickedCircle.classList.contains('orange-circle')) {
       clickedCircle.classList.remove('orange-circle');
+      connectCircles();
     } else {
       for (let j = 0; j < sameColumnCircles.length; j++) {
         sameColumnCircles[j].classList.remove('orange-circle');
+        connectCircles();
       }
       clickedCircle.classList.add('orange-circle');
       connectCircles();
@@ -231,6 +233,20 @@ function connectCircles() {
   }
 }
 
+// function linedraw(x1, y1, x2, y2) {
+//   if (x2 < x1) {
+//     var tmp;
+//     tmp = x2; x2 = x1; x1 = tmp;
+//     tmp = y2; y2 = y1; y1 = tmp;
+//   }
+
+//   var lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+//   var m = (y2 - y1) / (x2 - x1);
+
+//   var degree = Math.atan(m) * 180 / Math.PI;
+
+//   document.querySelector('.circles-wrapper').innerHTML += "<div class='circle-connecting-line' style='transform-origin: top left; transform: rotate(" + degree + "deg); width: " + lineLength + "px; height: 1px; background: var(--orange); pointer-events: none; z-index:1; position: absolute; top: " + y1 + "px; left: " + x1 + "px;'></div>";
+// }
 function linedraw(x1, y1, x2, y2) {
   if (x2 < x1) {
     var tmp;
@@ -243,5 +259,12 @@ function linedraw(x1, y1, x2, y2) {
 
   var degree = Math.atan(m) * 180 / Math.PI;
 
-  document.querySelector('.circles-wrapper').innerHTML += "<div class='circle-connecting-line' style='transform-origin: top left; transform: rotate(" + degree + "deg); width: " + lineLength + "px; height: 1px; background: var(--orange); pointer-events: none; z-index:1; position: absolute; top: " + y1 + "px; left: " + x1 + "px;'></div>";
+  var newLine = document.createElement('div');
+  newLine.className = 'circle-connecting-line';
+  newLine.style.transform = 'rotate(' + degree + 'deg)';
+  newLine.style.width = lineLength + 'px';
+  newLine.style.top = y1 + 'px';
+  newLine.style.left = x1 + 'px';
+
+  document.querySelector('.circles-wrapper').appendChild(newLine);
 }
