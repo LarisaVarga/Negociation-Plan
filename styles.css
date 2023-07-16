@@ -462,6 +462,7 @@ h3 { color: black; }
   text-align: center;
   letter-spacing: 10px;
   margin-bottom: 1rem;
+  color: var(--blue);
 }
 
 .circles-wrapper {
@@ -476,33 +477,34 @@ h3 { color: black; }
   background-color: var(--white);
   cursor: pointer;
   z-index: 5;
+  position: relative;
 }
 .circle.orange-circle {
   background-color: var(--orange);
   border-color: var(--orange);
 }
-.circle:nth-child(3) { margin-bottom: 0.5rem; }
-.circle:nth-child(4) { margin-top: 0.5rem; }
 
 .circles-col {
   display: flex;
   flex-direction: column; 
   justify-content: space-between;
   height: 20rem;
-  width: 25px;
+  width: 33%;
   z-index: 5;
+  align-items: center;
 }
-.circles-col:nth-child(4) { left: 10%;}
+/* .circles-col:nth-child(4) { left: 10%;}
 .circles-col:nth-child(2) {left: 45%;}
-.circles-col:nth-child(3) { left: 80%;}
+.circles-col:nth-child(3) { left: 80%;} */
+/* .circle:nth-child(3) { margin-bottom: 0.5rem; }
+.circle:nth-child(4) { margin-top: 0.5rem; } */
 .circles-line {
   position: absolute;
-  height: 100%;
-  width: 1px;
-  background-color: var(--grey);
   left: calc( 50% - 0.5px );
-  z-index: 1;
-  top: 0;
+  bottom: -12px;
+  height: 12px;
+  width: 1px;
+  background-color: var(--grey);;
 }
 
 .circle-devider-line  {
@@ -521,4 +523,23 @@ h3 { color: black; }
   pointer-events: none;
   z-index: 1;
   position:absolute;
+}
+.cicles-text-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.circles-text {
+  margin-top: 0.8rem;
+  width: 33%;
+}
+.circles-text h5 {
+  text-transform: uppercase;
+  color: var(--darkGrey);
+  margin-bottom: 0.5rem;
+  margin-left: 1.8rem;
+}
+.circles-text .circles-long-text {
+  font-style: italic;
+  color: var(--darkGrey);
 }
