@@ -186,6 +186,78 @@ function allowUncheck(e) {
 }
 
 /* Negociation Plan */
+var commercialCircles = document.querySelectorAll('.commercial-circle');
+
+for (let i = 0; i < commercialCircles.length; i++) {
+  commercialCircles[i].addEventListener('click', function () {
+    console.log('message')
+    var clickedCircle = this;
+    var parentColumn = clickedCircle.closest('.commercial-circles-col');
+    var sameColumnCircles = parentColumn.querySelectorAll('.commercial-circle');
+
+    if (clickedCircle.classList.contains('blue-circle')) {
+      clickedCircle.classList.remove('blue-circle');
+      connectBlueCircles();
+    } else {
+      for (let j = 0; j < sameColumnCircles.length; j++) {
+        sameColumnCircles[j].classList.remove('blue-circle');
+        connectBlueCircles();
+      }
+      clickedCircle.classList.add('blue-circle');
+      connectBlueCircles();
+    }
+  });
+}
+
+function connectBlueCircles() {
+  var clickedCircles = document.querySelectorAll('.blue-circle');
+  console.log(clickedCircles.length)
+
+  if (clickedCircles.length === 3) {
+    var circle1 = clickedCircles[0]
+    var circle2 = clickedCircles[1]
+    var circle3 = clickedCircles[2]
+    var x1 = circle1.offsetLeft + circle1.offsetWidth / 2;
+    var y1 = circle1.offsetTop + circle1.offsetHeight / 2;
+    var x2 = circle2.offsetLeft + circle2.offsetWidth / 2;
+    var y2 = circle2.offsetTop + circle2.offsetHeight / 2;
+    var x3 = circle3.offsetLeft + circle3.offsetWidth / 2;
+    var y3 = circle3.offsetTop + circle3.offsetHeight / 2;
+    console.log(x1, y1, x2, y2, x3, y3)
+    blueLineDraw(x1, y1, x2, y2)
+    blueLineDraw(x2, y2, x3, y3)
+  } else {
+    var lines = document.querySelectorAll('.blue-connecting-line');
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].parentNode.removeChild(lines[i]);
+    }
+  }
+}
+
+function blueLineDraw(x1, y1, x2, y2) {
+  if (x2 < x1) {
+    var tmp;
+    tmp = x2; x2 = x1; x1 = tmp;
+    tmp = y2; y2 = y1; y1 = tmp;
+  }
+
+  var lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  var m = (y2 - y1) / (x2 - x1);
+
+  var degree = Math.atan(m) * 180 / Math.PI;
+
+  var newLine = document.createElement('div');
+  newLine.className = 'blue-connecting-line';
+  newLine.style.transform = 'rotate(' + degree + 'deg)';
+  newLine.style.width = lineLength + 'px';
+  newLine.style.top = y1 + 'px';
+  newLine.style.left = x1 + 'px';
+
+  document.querySelector('.commercial-circles-wrapper').appendChild(newLine);
+}
+
+
+
 var personalCircles = document.querySelectorAll('.personal-circle');
 
 for (let i = 0; i < personalCircles.length; i++) {
@@ -226,7 +298,7 @@ function connectCircles() {
     linedraw(x1, y1, x2, y2)
     linedraw(x2, y2, x3, y3)
   } else {
-    var lines = document.querySelectorAll('.circle-connecting-line');
+    var lines = document.querySelectorAll('.orange-connecting-line');
     for (var i = 0; i < lines.length; i++) {
       lines[i].parentNode.removeChild(lines[i]);
     }
@@ -246,7 +318,7 @@ function linedraw(x1, y1, x2, y2) {
   var degree = Math.atan(m) * 180 / Math.PI;
 
   var newLine = document.createElement('div');
-  newLine.className = 'circle-connecting-line';
+  newLine.className = 'orange-connecting-line';
   newLine.style.transform = 'rotate(' + degree + 'deg)';
   newLine.style.width = lineLength + 'px';
   newLine.style.top = y1 + 'px';
