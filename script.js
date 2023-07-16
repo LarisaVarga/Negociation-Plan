@@ -186,13 +186,13 @@ function allowUncheck(e) {
 }
 
 /* Negociation Plan */
-var circles = document.querySelectorAll('.circle');
+var personalCircles = document.querySelectorAll('.personal-circle');
 
-for (let i = 0; i < circles.length; i++) {
-  circles[i].addEventListener('click', function () {
+for (let i = 0; i < personalCircles.length; i++) {
+  personalCircles[i].addEventListener('click', function () {
     var clickedCircle = this;
-    var parentColumn = clickedCircle.closest('.circles-col');
-    var sameColumnCircles = parentColumn.querySelectorAll('.circle');
+    var parentColumn = clickedCircle.closest('.personal-circles-col');
+    var sameColumnCircles = parentColumn.querySelectorAll('.personal-circle');
 
     if (clickedCircle.classList.contains('orange-circle')) {
       clickedCircle.classList.remove('orange-circle');
@@ -233,20 +233,6 @@ function connectCircles() {
   }
 }
 
-// function linedraw(x1, y1, x2, y2) {
-//   if (x2 < x1) {
-//     var tmp;
-//     tmp = x2; x2 = x1; x1 = tmp;
-//     tmp = y2; y2 = y1; y1 = tmp;
-//   }
-
-//   var lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-//   var m = (y2 - y1) / (x2 - x1);
-
-//   var degree = Math.atan(m) * 180 / Math.PI;
-
-//   document.querySelector('.circles-wrapper').innerHTML += "<div class='circle-connecting-line' style='transform-origin: top left; transform: rotate(" + degree + "deg); width: " + lineLength + "px; height: 1px; background: var(--orange); pointer-events: none; z-index:1; position: absolute; top: " + y1 + "px; left: " + x1 + "px;'></div>";
-// }
 function linedraw(x1, y1, x2, y2) {
   if (x2 < x1) {
     var tmp;
@@ -266,5 +252,5 @@ function linedraw(x1, y1, x2, y2) {
   newLine.style.top = y1 + 'px';
   newLine.style.left = x1 + 'px';
 
-  document.querySelector('.circles-wrapper').appendChild(newLine);
+  document.querySelector('.personal-circles-wrapper').appendChild(newLine);
 }
