@@ -322,8 +322,8 @@ function createCustomVariable() {
   let temp = document.createElement('template');
   var number = Math.floor(Math.random() * 1000);
   temp.innerHTML = `
-    <tr>
-      <td class="w-20 main-variable">
+    <tr class="main-variable-tr">
+      <td class="w-20">
         <textarea class="w-100"></textarea>
       </td>
       <td class="w-38"><textarea class="w-100"></textarea></td>
@@ -334,7 +334,7 @@ function createCustomVariable() {
     </tr>
   `;
   let clon = temp.content.cloneNode(true);
-  clon.querySelector('.main-variable').id = number;
+  clon.querySelector('.main-variable-tr').id = number;
   tbodyMainVariables.appendChild(clon);
 }
 
@@ -359,4 +359,49 @@ function UpdateSelectColor() {
   } else {
     this.style.color = "#596172";
   }
+}
+
+
+const createGetBtn = document.querySelector(".add-gets-btn");
+
+if (createGetBtn) {
+  createGetBtn.addEventListener("click", createGetRow);
+}
+
+function createGetRow() {
+  let temp = document.createElement('template');
+  var number = Math.floor(Math.random() * 1000);
+  temp.innerHTML = `
+    <tr class="gets-tr">
+      <td class="gets-example"><textarea class="w-100"></textarea></td>
+      <td class="cost-to-them">
+        <select class="w-100">
+          <option value="" selected="" disabled="" hidden="">Select</option>
+          <option class="text-red">1 - Low</option>
+          <option class="text-yellow">2 - Low to Moderate</option>
+          <option class="text-yellow">3 - Moderate</option>
+          <option class="text-green">4 - Moderate to High</option>
+          <option class="text-green">5 - High</option>
+        </select>
+      </td>
+      <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+      <td class="value-to-us">
+        <select class="w-100">
+          <option value="" selected="" disabled="" hidden="">Select</option>
+          <option class="text-red">1 - Low</option>
+          <option class="text-yellow">2 - Low to Moderate</option>
+          <option class="text-yellow">3 - Moderate</option>
+          <option class="text-green">4 - Moderate to High</option>
+          <option class="text-green">5 - High</option>
+        </select>
+      </td>
+      <td class="monetized-value"><textarea class="w-100"></textarea></td>
+      <td class="actions d-flex items-center justify-center cursor-pointer">
+        <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
+      </td>
+    </tr>
+  `;
+  let clon = temp.content.cloneNode(true);
+  clon.querySelector('.gets-tr').id = number;
+  tbodyGets.appendChild(clon);
 }
