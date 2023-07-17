@@ -224,8 +224,8 @@ function connectBlueCircles() {
     var x3 = circle3.offsetLeft + circle3.offsetWidth / 2;
     var y3 = circle3.offsetTop + circle3.offsetHeight / 2;
     console.log(x1, y1, x2, y2, x3, y3)
-    blueLineDraw(x1, y1, x2, y2)
-    blueLineDraw(x2, y2, x3, y3)
+    blueLineDraw(x1, y1, x2, y2, '.commercial-circles-wrapper')
+    blueLineDraw(x2, y2, x3, y3, '.commercial-circles-wrapper')
   } else {
     var lines = document.querySelectorAll('.blue-connecting-line');
     for (var i = 0; i < lines.length; i++) {
@@ -234,7 +234,7 @@ function connectBlueCircles() {
   }
 }
 
-function blueLineDraw(x1, y1, x2, y2) {
+function blueLineDraw(x1, y1, x2, y2, parentCass) {
   if (x2 < x1) {
     var tmp;
     tmp = x2; x2 = x1; x1 = tmp;
@@ -253,7 +253,7 @@ function blueLineDraw(x1, y1, x2, y2) {
   newLine.style.top = y1 + 'px';
   newLine.style.left = x1 + 'px';
 
-  document.querySelector('.commercial-circles-wrapper').appendChild(newLine);
+  document.querySelector(parentCass).appendChild(newLine);
 }
 
 
@@ -295,8 +295,8 @@ function connectCircles() {
     var x3 = circle3.offsetLeft + circle3.offsetWidth / 2;
     var y3 = circle3.offsetTop + circle3.offsetHeight / 2;
     console.log(x1, y1, x2, y2, x3, y3)
-    linedraw(x1, y1, x2, y2)
-    linedraw(x2, y2, x3, y3)
+    orangeLineDraw(x1, y1, x2, y2)
+    orangeLineDraw(x2, y2, x3, y3)
   } else {
     var lines = document.querySelectorAll('.orange-connecting-line');
     for (var i = 0; i < lines.length; i++) {
@@ -305,7 +305,7 @@ function connectCircles() {
   }
 }
 
-function linedraw(x1, y1, x2, y2) {
+function orangeLineDraw(x1, y1, x2, y2) {
   if (x2 < x1) {
     var tmp;
     tmp = x2; x2 = x1; x1 = tmp;
