@@ -263,7 +263,7 @@
 #our-team-members-table th:last-child, #their-key-players-table th:last-child  {
   border-right: none;
 }
-.team-members-tr, .key-players-tr, #deal-sheet tr {
+.team-members-tr, .key-players-tr, #deal-sheet-body tr {
   border-top: 1px solid var(--grey);
 }
 #our-team-members-table td, #their-key-players-table td, #deal-sheet-table td { padding: 5px }

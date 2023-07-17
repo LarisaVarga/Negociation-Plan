@@ -314,15 +314,48 @@ function orangeLineDraw(x1, y1, x2, y2) {
 
   var lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   var m = (y2 - y1) / (x2 - x1);
-
   var degree = Math.atan(m) * 180 / Math.PI;
-
   var newLine = document.createElement('div');
+
   newLine.className = 'orange-connecting-line';
   newLine.style.transform = 'rotate(' + degree + 'deg)';
   newLine.style.width = lineLength + 'px';
   newLine.style.top = y1 + 'px';
   newLine.style.left = x1 + 'px';
-
   document.querySelector('.personal-circles-wrapper').appendChild(newLine);
 }
+
+const tbodyMainVariables = document.getElementById("deal-sheet-body");
+const createVariableBtn = document.querySelector(".add-cv-btn");
+
+if (createVariableBtn) {
+  createVariableBtn.addEventListener("click", createCustomVariable);
+}
+
+function createCustomVariable() {
+  let temp = document.createElement('template');
+  var number = Math.floor(Math.random() * 1000);
+  temp.innerHTML = `
+    <tr>
+      <td class="w-20 main-variable">
+        <textarea class="w-100"></textarea>
+      </td>
+      <td class="w-38"><textarea class="w-100"></textarea></td>
+      <td class="w-38"><textarea class="w-100"></textarea></td>
+      <td class="actions d-flex items-center justify-center cursor-pointer">
+      <img class="delete-variable-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
+      </td>
+    </tr>
+  `;
+  let clon = temp.content.cloneNode(true);
+  clon.querySelector('.main-variable').id = number;
+  tbodyMainVariables.appendChild(clon);
+
+}
+
+document.addEventListener('click', function (event) {
+  if (event.target && event.target.classList.contains('delete-variable-tr-icon')) {
+    var row = event.target.closest('tr');
+    row.remove();
+  }
+});
