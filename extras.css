@@ -286,7 +286,7 @@ a, a:visited {
 
 
 /* Negociation Plan */
-
+.w-30 { width: 30%;}
 .w-40 { width: 40%;}
 .text-center { text-align: center;}
 .text-darkgrey { color: var(--darkGrey);}
