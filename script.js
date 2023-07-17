@@ -190,7 +190,6 @@ var commercialCircles = document.querySelectorAll('.commercial-circle');
 
 for (let i = 0; i < commercialCircles.length; i++) {
   commercialCircles[i].addEventListener('click', function () {
-    console.log('message')
     var clickedCircle = this;
     var parentColumn = clickedCircle.closest('.commercial-circles-col');
     var sameColumnCircles = parentColumn.querySelectorAll('.commercial-circle');
@@ -343,19 +342,32 @@ function createCustomVariable() {
       <td class="w-38"><textarea class="w-100"></textarea></td>
       <td class="w-38"><textarea class="w-100"></textarea></td>
       <td class="actions d-flex items-center justify-center cursor-pointer">
-      <img class="delete-variable-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
+      <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
       </td>
     </tr>
   `;
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.main-variable').id = number;
   tbodyMainVariables.appendChild(clon);
-
 }
 
-document.addEventListener('click', function (event) {
-  if (event.target && event.target.classList.contains('delete-variable-tr-icon')) {
-    var row = event.target.closest('tr');
-    row.remove();
-  }
+
+// Add event listeners to the select elements to update classes
+var tbodyGets = document.getElementById('gets-table-body')
+var getsSelectElements = tbodyGets.querySelectorAll('select');
+getsSelectElements.forEach(function (getsSelectElement) {
+  getsSelectElement.addEventListener('change', function () {
+    var selectedOptionClass = this.options[this.selectedIndex].className;
+    if (selectedOptionClass === "text-red") {
+      this.style.color = "#BF4030";
+    }
+    else if (selectedOptionClass === "text-yellow") {
+      this.style.color = "#FFA500";
+    }
+    else if (selectedOptionClass === "text-green") {
+      this.style.color = "#0B9A0B";
+    } else {
+      this.style.color = "#596172";
+    }
+  });
 });

@@ -249,13 +249,13 @@
 
 /* Negociation Plan */
 
-#our-team-members-table, #their-key-players-table, #deal-sheet-table {
+#our-team-members-table, #their-key-players-table, #deal-sheet-table, #gets-table {
   text-align: left;
   background-color: var(--white);
   border: 1px solid var(--grey);
   border-collapse: collapse;
 }
-#our-team-members-table th, #their-key-players-table th, #deal-sheet-table th {
+#our-team-members-table th, #their-key-players-table th, #deal-sheet-table th, #gets-table th {
   padding: 8px;
   background-color: var(--lightGrey);
   border-right: 1px solid var(--grey);
@@ -263,10 +263,10 @@
 #our-team-members-table th:last-child, #their-key-players-table th:last-child  {
   border-right: none;
 }
-.team-members-tr, .key-players-tr, #deal-sheet-body tr {
+.team-members-tr, .key-players-tr, #deal-sheet-body tr, #gets-table tr {
   border-top: 1px solid var(--grey);
 }
-#our-team-members-table td, #their-key-players-table td, #deal-sheet-table td { padding: 5px }
+#our-team-members-table td, #their-key-players-table td, #deal-sheet-table td, #gets-table td { padding: 5px }
 
 /* Negociation Plan */
 
@@ -581,3 +581,5 @@ h3 { color: black; }
 .leverage-icon {height: 7rem;}
 
 .w-38 { width: 38%;}
+.cost-to-them, .monetized-cost, .value-to-us, .monetized-value { width: 20rem;}
+.gets-example { width: calc( 100% - 87rem);}
