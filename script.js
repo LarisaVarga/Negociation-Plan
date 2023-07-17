@@ -148,22 +148,9 @@ function createKeyPlayerRow() {
   // Add event listeners to the select elements to update classes
   var trElement = tbodyKeyPlayers.lastElementChild;
   var selectElements = trElement.querySelectorAll('select');
-  // console.log(selectElements)
+  /* Negociation Plan */
   selectElements.forEach(function (selectElement) {
-    selectElement.addEventListener('change', function () {
-      var selectedOptionClass = this.options[this.selectedIndex].className;
-      if (selectedOptionClass === "text-red") {
-        this.style.color = "#BF4030";
-      }
-      else if (selectedOptionClass === "text-yellow") {
-        this.style.color = "#FFA500";
-      }
-      else if (selectedOptionClass === "text-green") {
-        this.style.color = "#0B9A0B";
-      } else {
-        this.style.color = "#596172";
-      }
-    });
+    selectElement.addEventListener('change', UpdateSelectColor);
   });
 }
 
@@ -356,18 +343,20 @@ function createCustomVariable() {
 var tbodyGets = document.getElementById('gets-table-body')
 var getsSelectElements = tbodyGets.querySelectorAll('select');
 getsSelectElements.forEach(function (getsSelectElement) {
-  getsSelectElement.addEventListener('change', function () {
-    var selectedOptionClass = this.options[this.selectedIndex].className;
-    if (selectedOptionClass === "text-red") {
-      this.style.color = "#BF4030";
-    }
-    else if (selectedOptionClass === "text-yellow") {
-      this.style.color = "#FFA500";
-    }
-    else if (selectedOptionClass === "text-green") {
-      this.style.color = "#0B9A0B";
-    } else {
-      this.style.color = "#596172";
-    }
-  });
+  getsSelectElement.addEventListener('change', UpdateSelectColor);
 });
+
+function UpdateSelectColor() {
+  var selectedOptionClass = this.options[this.selectedIndex].className;
+  if (selectedOptionClass === "text-red") {
+    this.style.color = "#BF4030";
+  }
+  else if (selectedOptionClass === "text-yellow") {
+    this.style.color = "#FFA500";
+  }
+  else if (selectedOptionClass === "text-green") {
+    this.style.color = "#0B9A0B";
+  } else {
+    this.style.color = "#596172";
+  }
+}
