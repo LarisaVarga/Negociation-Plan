@@ -361,7 +361,6 @@ function UpdateSelectColor() {
   }
 }
 
-
 const createGetBtn = document.querySelector(".add-gets-btn");
 
 if (createGetBtn) {
@@ -404,6 +403,13 @@ function createGetRow() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
+  // Add event listeners to the select elements to update classes
+  var trElement = tbodyGets.lastElementChild;
+  var selectElements = trElement.querySelectorAll('select');
+  /* Negociation Plan */
+  selectElements.forEach(function (selectElement) {
+    selectElement.addEventListener('change', UpdateSelectColor);
+  });
 }
 
 const tcTriggers = document.querySelectorAll('.tc-trigger');
@@ -438,9 +444,9 @@ function showContent(tab) {
   document.querySelector(".ideas-tabs button[data-tab='" + tab + "']").classList.add("ideas-active-tab");
 
   // Hide all content divs
-  var contents = document.getElementsByClassName("ideas-content");
-  for (var i = 0; i < contents.length; i++) {
-    contents[i].style.display = "none";
+  var ideasContent = document.getElementsByClassName("ideas-content");
+  for (var i = 0; i < ideasContent.length; i++) {
+    ideasContent[i].style.display = "none";
   }
   // Show the clicked tab's content
   var selectedContent = document.querySelectorAll(".ideas-content." + tab);
@@ -465,9 +471,9 @@ window.onload = function () {
 
 
 // Attach event listeners to the ideas-content elements
-var contents = document.getElementsByClassName("ideas-content");
-for (var i = 0; i < contents.length; i++) {
-  contents[i].addEventListener("click", function () {
+var ideasContent = document.getElementsByClassName("ideas-content");
+for (var i = 0; i < ideasContent.length; i++) {
+  ideasContent[i].addEventListener("click", function (event) {
     // Find the first empty gets-example element
     // var tableBody = document.querySelector("#gets-table-body");
     var examples = tbodyGets.querySelectorAll(".gets-example");
@@ -482,7 +488,6 @@ for (var i = 0; i < contents.length; i++) {
         break;
       }
     }
-
     // If there are no empty textareas, create a new row
     if (!emptyTextarea) {
       createGetRow();
@@ -494,9 +499,11 @@ for (var i = 0; i < contents.length; i++) {
       // Add the ideas-content's content to the textarea in the new row
       textareaInLastRow.value = this.textContent;
     } else {
+      // Add the ideas-content's content to the textarea
       emptyTextarea.value = this.textContent;
     }
 
-    // Add the ideas-content's content to the textarea
+    closeModal(event)
+
   });
 }

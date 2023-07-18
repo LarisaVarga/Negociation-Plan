@@ -606,34 +606,31 @@ h3 { color: black; }
   color: white;
 }
 
-/* Style the container div */
-.filterable-elements {
-  margin-top: 20px;
-  overflow: hidden;
+.tc-modal { 
+  background-color: var(--white);
+  padding: 2rem;
 }
+.ideas-tabs {
+  background-color: var(--blue);
+  padding: 5px 5px 0 5px;
 
-/* Style the filterDiv */
-.filterDiv {
-  float: left;
-  background-color: #2196F3;
-  color: #ffffff;
-  width: 100px;
-  line-height: 100px;
-  text-align: center;
-  margin: 2px;
-  display: none; /* Hidden by default */
 }
-.filterDiv.show {
-  display: block;
-}
-
 .ideas-tabs button {
   padding: 10px;
   cursor: pointer;
+  color: var(--white);
+  background-color: var(--blue);
+
+  border: none;
+}
+.ideas-tabs button.ideas-active-tab {
+  background-color: var(--white);
+  color: var(--blue);
 }
 .ideas-content {
   padding: 20px;
   border: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .close-idea-modal {
