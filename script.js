@@ -405,3 +405,98 @@ function createGetRow() {
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
 }
+
+const tcTriggers = document.querySelectorAll('.tc-trigger');
+const closeIdeasBtns = document.querySelectorAll('.close-idea-modal');
+for (const tcTrigger of tcTriggers) {
+  tcTrigger.addEventListener('click', showModal);
+}
+function showModal(event) {
+  const selector = event.target.value;
+  const overlay = document.getElementById(selector);
+  if (overlay !== null) {
+    overlay.style.display = "flex";
+  }
+}
+for (const closeIdeasBtn of closeIdeasBtns) {
+  closeIdeasBtn.addEventListener('click', closeModal);
+}
+function closeModal(event) {
+  const closeIdeasBtn = event.currentTarget;
+  const overlaywrapper = closeIdeasBtn.closest('.tc-modal-overlay');
+  overlaywrapper.style.display = "none"
+}
+
+
+function showContent(tab) {
+  // Remove the active class from all buttons
+  var buttons = document.querySelectorAll(".ideas-tabs button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("ideas-active-tab");
+  }
+  // Add the active class to the clicked button
+  document.querySelector(".ideas-tabs button[data-tab='" + tab + "']").classList.add("ideas-active-tab");
+
+  // Hide all content divs
+  var contents = document.getElementsByClassName("ideas-content");
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = "none";
+  }
+  // Show the clicked tab's content
+  var selectedContent = document.querySelectorAll(".ideas-content." + tab);
+  for (var i = 0; i < selectedContent.length; i++) {
+    selectedContent[i].style.display = "block";
+  }
+}
+
+// Attach event listeners to the buttons
+var buttons = document.querySelectorAll(".ideas-tabs button");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    showContent(this.dataset.tab);
+  });
+}
+
+// Show 'All' content by default and make 'All' tab active
+window.onload = function () {
+  showContent('all');
+};
+
+
+
+// Attach event listeners to the ideas-content elements
+var contents = document.getElementsByClassName("ideas-content");
+for (var i = 0; i < contents.length; i++) {
+  contents[i].addEventListener("click", function () {
+    // Find the first empty gets-example element
+    // var tableBody = document.querySelector("#gets-table-body");
+    var examples = tbodyGets.querySelectorAll(".gets-example");
+    var emptyTextarea = null;
+
+    for (var j = 0; j < examples.length; j++) {
+      // Find the textarea inside the td
+      var textarea = examples[j].querySelector("textarea");
+      // Check if the textarea is empty
+      if (textarea && !textarea.value) {
+        emptyTextarea = textarea;
+        break;
+      }
+    }
+
+    // If there are no empty textareas, create a new row
+    if (!emptyTextarea) {
+      createGetRow();
+      // After creating the new row, get the textarea in the last row
+      var allRows = tbodyGets.querySelectorAll(".gets-tr");
+      var lastRow = allRows[allRows.length - 1];
+      var textareaInLastRow = lastRow.querySelector(".gets-example textarea");
+
+      // Add the ideas-content's content to the textarea in the new row
+      textareaInLastRow.value = this.textContent;
+    } else {
+      emptyTextarea.value = this.textContent;
+    }
+
+    // Add the ideas-content's content to the textarea
+  });
+}

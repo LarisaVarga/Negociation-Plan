@@ -120,7 +120,8 @@ a, a:visited {
 }
 .section-content h4, .section-content h3, .section-content span, .section-content div, .section-content p { font-family: "Montserrat", sans-serif;}
 
-.video-overlay, .delete-member-overlay {
+/* Negociation Plan */
+.video-overlay, .delete-member-overlay, .tc-modal-overlay {
   position: fixed; 
   display: none; 
   width: 100%; 
@@ -187,13 +188,6 @@ a, a:visited {
 .video-wrapper {
   width: 750px;
   height: 420px;
-}
-.close-video-icon {
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  padding: 0.5rem;
-  cursor: pointer;
 }
 
 .checkmark {
