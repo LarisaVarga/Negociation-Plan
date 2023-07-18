@@ -507,3 +507,28 @@ for (var i = 0; i < ideasContent.length; i++) {
 
   });
 }
+
+
+// Get the input field
+var input = document.getElementById('searchBar');
+
+// Listen for keystrokes
+input.addEventListener('keyup', filterIdeas);
+
+function filterIdeas() {
+  // Get the filter value
+  var filterValue = input.value.toUpperCase();
+
+  // Get the ideas
+  var ideas = document.getElementsByClassName('ideas-content');
+
+  // Loop through all the ideas and hide those that don't match the search query
+  for (var i = 0; i < ideas.length; i++) {
+    var idea = ideas[i];
+    if (idea.textContent.toUpperCase().indexOf(filterValue) > -1) {
+      idea.style.display = '';
+    } else {
+      idea.style.display = 'none';
+    }
+  }
+}
