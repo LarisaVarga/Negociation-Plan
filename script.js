@@ -510,7 +510,7 @@ for (var i = 0; i < ideasContent.length; i++) {
 
 
 // Get the input field
-var input = document.getElementById('searchBar');
+var input = document.getElementById('searchIdeasBar');
 
 // Listen for keystrokes
 input.addEventListener('keyup', filterIdeas);

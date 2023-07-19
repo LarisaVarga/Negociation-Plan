@@ -608,32 +608,64 @@ h3 { color: black; }
 
 .tc-modal { 
   background-color: var(--white);
-  padding: 2rem;
+  width: 50%;
 }
 .ideas-tabs {
-  background-color: var(--blue);
-  padding: 5px 5px 0 5px;
-
+  background-color: var(--darkBlue);
+  padding: 0.3rem 0.3rem 0 0.3rem;
 }
 .ideas-tabs button {
-  padding: 10px;
+  padding: 0.7rem 2rem 1rem 2rem;
   cursor: pointer;
   color: var(--white);
-  background-color: var(--blue);
-
+  background-color: var(--darkBlue);
   border: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 .ideas-tabs button.ideas-active-tab {
   background-color: var(--white);
-  color: var(--blue);
+  color: var(--darkBlue);
 }
 .ideas-content {
-  padding: 20px;
-  border: 1px solid #ddd;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
 .close-idea-modal {
  cursor: pointer;
 }
+.close-idea-modal img {
+ width: 2.5rem;
+ height: 2.5rem;
+ padding: 0.5rem;
+}
 
+.ideas-bottom-content {
+  border: 2px solid var(--darkBlue);
+  margin: 2rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+.ideas-top {
+  background-color: var(--lightGrey);
+  padding: 2rem;
+}
+
+#searchIdeasBar {
+  margin: 1rem 2rem 0.5rem 2rem; 
+  height: 35px;
+  min-height: 35px;
+  width: calc(100% - 4rem);
+}
+.ideas-wrapper {
+  height: 40rem;
+  overflow-y: scroll;
+  border: 1px solid var(--grey);
+  margin: 0 2rem 2rem 2rem;
+}
+.idea-top-text {
+  padding: 2rem 2rem 0 2rem;
+}

@@ -284,3 +284,4 @@ a, a:visited {
 .w-40 { width: 40%;}
 .text-center { text-align: center;}
 .text-darkgrey { color: var(--darkGrey);}
+.uppercase { text-transform: uppercase;}
