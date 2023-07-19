@@ -101,6 +101,8 @@ document.addEventListener('click', function (event) {
   if (event.target && event.target.classList.contains('delete-tr-icon')) {
     var row = event.target.closest('tr');
     row.remove();
+    totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
+    // console.log(Array.from(document.querySelectorAll('.money-input.mc')))
   }
 });
 
@@ -384,7 +386,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-cost"><input class="money-input w-100" type="text" name="mc-value"></td>
+      <td class="monetized-cost"><input class="money-input mc w-100" type="text" name="mc-value"></td>
       <td class="value-to-us">
         <select class="w-100">
           <option value="" selected="" disabled="" hidden="">Select</option>
@@ -395,7 +397,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-value"><input class="money-input w-100" type="text" name="mc-value"></td>
+      <td class="monetized-value"><input class="money-input mv w-100" type="text" name="mc-value"></td>
       <td class="actions d-flex items-center justify-center cursor-pointer">
         <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
       </td>
@@ -404,6 +406,7 @@ function createGetRow() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
+  totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
 
   var moneyInputs = document.querySelectorAll('.money-input');
   moneyInputs.forEach(moneyInput => {
@@ -412,12 +415,13 @@ function createGetRow() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
+      totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
+      totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
     });
   });
-
 
   // Add event listeners to the select elements to update classes
   var trElement = tbodyGets.lastElementChild;
@@ -426,7 +430,6 @@ function createGetRow() {
   selectElements.forEach(function (selectElement) {
     selectElement.addEventListener('change', UpdateSelectColor);
   });
-
 }
 
 const tcTriggers = document.querySelectorAll('.tc-trigger');
@@ -527,14 +530,11 @@ var input = document.getElementById('searchIdeasBar');
 
 // Listen for keystrokes
 input.addEventListener('keyup', filterIdeas);
-
 function filterIdeas() {
   // Get the filter value
   var filterValue = input.value.toUpperCase();
-
   // Get the ideas
   var ideas = document.getElementsByClassName('ideas-content');
-
   // Loop through all the ideas and hide those that don't match the search query
   for (var i = 0; i < ideas.length; i++) {
     var idea = ideas[i];
@@ -546,27 +546,20 @@ function filterIdeas() {
   }
 }
 
-
-
-
 var moneyInputs = document.querySelectorAll('.money-input');
 
 moneyInputs.forEach(moneyInput => {
-  moneyInput.addEventListener('keydown', preventNonNumericalAndZeroFirstInput);
+  moneyInput.addEventListener('keypress', preventNonNumericalAndZeroFirstInput);
 });
 
 function preventNonNumericalAndZeroFirstInput(e) {
-  var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
-  var charStr = String.fromCharCode(charCode);
-  // Prevent non-numeric characters
-  if (!charStr.match(/^[0-9]+$/)) {
-    e.preventDefault();
-  }
-  // Prevent zero at the beginning
-  if (e.target.value.length === 0 && charStr == '0') {
+  if ((e.which < 48 || e.which > 57) && e.which != 8 && e.which != 13) {
     e.preventDefault();
   }
 }
+var monetizedCosts = document.querySelectorAll('.money-input.mc');
+var monetizedCostsArr = Array.from(monetizedCosts)
+
 
 document.addEventListener('DOMContentLoaded', triggerAddCommas())
 function triggerAddCommas() {
@@ -574,6 +567,7 @@ function triggerAddCommas() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
+      totalSum(monetizedCostsArr)
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
@@ -592,4 +586,9 @@ function addCommas(nStr) {
   }
   return x1 + x2;
 }
+const totalSumWrapper = document.getElementById("total-cost-to-them")
 
+function totalSum(arr) {
+  let sum = arr.map(x => x.value).filter(x => x !== "").map(x => parseInt(x.replaceAll(",", ""))).reduce((a, b) => a + b, 0)
+  totalSumWrapper.innerHTML = '$' + addCommas(sum)
+}
