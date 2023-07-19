@@ -155,6 +155,7 @@ function createKeyPlayerRow() {
 }
 
 
+
 // manager reviews
 document.querySelectorAll(
   'input[type=radio].uncheck-possible').forEach((elem) => {
@@ -383,7 +384,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
+      <td class="monetized-cost"><input class="money-input w-100" type="text" name="mc-value"></td>
       <td class="value-to-us">
         <select class="w-100">
           <option value="" selected="" disabled="" hidden="">Select</option>
@@ -394,7 +395,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
+      <td class="monetized-value"><input class="money-input w-100" type="text" name="mc-value"></td>
       <td class="actions d-flex items-center justify-center cursor-pointer">
         <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
       </td>
@@ -404,16 +405,19 @@ function createGetRow() {
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
 
-  // var moneyInputs = document.querySelectorAll('.money-input');
-  // moneyInputs.forEach(moneyInput => {
-  //   moneyInput.addEventListener('blur', function () {
-  //     var cleanValue = this.value.replace(/,/g, '');
-  //     this.value = addCommas(cleanValue);
-  //   });
-  //   moneyInput.addEventListener('focus', function () {
-  //     this.value = this.value.replace(/,/g, '');
-  //   });
-  // });
+  var moneyInputs = document.querySelectorAll('.money-input');
+  moneyInputs.forEach(moneyInput => {
+    moneyInput.addEventListener('keydown', preventNonNumericalAndZeroFirstInput);
+
+    moneyInput.addEventListener('blur', function () {
+      var cleanValue = this.value.replace(/,/g, '');
+      this.value = addCommas(cleanValue);
+    });
+    moneyInput.addEventListener('focus', function () {
+      this.value = this.value.replace(/,/g, '');
+    });
+  });
+
 
   // Add event listeners to the select elements to update classes
   var trElement = tbodyGets.lastElementChild;
@@ -542,31 +546,50 @@ function filterIdeas() {
   }
 }
 
-// var moneyInputs = document.querySelectorAll('.money-input');
 
-// document.addEventListener('DOMContentLoaded', triggerAddCommas())
-// function triggerAddCommas() {
-//   moneyInputs.forEach(function (moneyInput) {
-//     moneyInput.addEventListener('blur', function () {
-//       var cleanValue = this.value.replace(/,/g, '');
-//       this.value = addCommas(cleanValue);
-//     });
-//     moneyInput.addEventListener('focus', function () {
-//       this.value = this.value.replace(/,/g, '');
-//     });
-//   });
-// };
 
-// function addCommas(nStr) {
-//   nStr += '';
-//   const x = nStr.split('.');
-//   let x1 = x[0];
-//   const x2 = x.length > 1 ? '.' + x[1] : '';
-//   const rgx = /(\d+)(\d{3})/;
-//   while (rgx.test(x1)) {
-//     x1 = x1.replace(rgx, '\$1' + '.' + '\$2');
-//   }
-//   return x1 + x2;
-// }
 
+var moneyInputs = document.querySelectorAll('.money-input');
+
+moneyInputs.forEach(moneyInput => {
+  moneyInput.addEventListener('keydown', preventNonNumericalAndZeroFirstInput);
+});
+
+function preventNonNumericalAndZeroFirstInput(e) {
+  var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
+  var charStr = String.fromCharCode(charCode);
+  // Prevent non-numeric characters
+  if (!charStr.match(/^[0-9]+$/)) {
+    e.preventDefault();
+  }
+  // Prevent zero at the beginning
+  if (e.target.value.length === 0 && charStr == '0') {
+    e.preventDefault();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', triggerAddCommas())
+function triggerAddCommas() {
+  moneyInputs.forEach(function (moneyInput) {
+    moneyInput.addEventListener('blur', function () {
+      var cleanValue = this.value.replace(/,/g, '');
+      this.value = addCommas(cleanValue);
+    });
+    moneyInput.addEventListener('focus', function () {
+      this.value = this.value.replace(/,/g, '');
+    });
+  });
+};
+
+function addCommas(nStr) {
+  nStr += '';
+  const x = nStr.split('.');
+  let x1 = x[0];
+  const x2 = x.length > 1 ? '.' + x[1] : '';
+  const rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, '\$1' + ',' + '\$2');
+  }
+  return x1 + x2;
+}
 
