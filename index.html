@@ -508,7 +508,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="value-to-us">
                       <select class="w-100">
                         <option value="" selected="" disabled="" hidden="">Select</option>
@@ -519,7 +519,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-value"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="actions d-flex items-center justify-center cursor-pointer">
                       <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
                     </td>
@@ -537,7 +537,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="value-to-us">
                       <select class="w-100">
                         <option value="" selected="" disabled="" hidden="">Select</option>
@@ -548,7 +548,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-value"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="actions d-flex items-center justify-center cursor-pointer">
                       <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
                     </td>
@@ -566,7 +566,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="value-to-us">
                       <select class="w-100">
                         <option value="" selected="" disabled="" hidden="">Select</option>
@@ -577,7 +577,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-value"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="actions d-flex items-center justify-center cursor-pointer">
                       <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
                     </td>
@@ -595,7 +595,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="value-to-us">
                       <select class="w-100">
                         <option value="" selected="" disabled="" hidden="">Select</option>
@@ -606,7 +606,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-value"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="actions d-flex items-center justify-center cursor-pointer">
                       <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
                     </td>
@@ -624,7 +624,7 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="value-to-us">
                       <select class="w-100">
                         <option value="" selected="" disabled="" hidden="">Select</option>
@@ -635,12 +635,23 @@
                         <option class="text-green">5 - High</option>
                       </select>
                     </td>
-                    <td class="monetized-value"><textarea class="w-100"></textarea></td>
+                    <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
                     <td class="actions d-flex items-center justify-center cursor-pointer">
                       <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
                     </td>
                   </tr>
+
                 </tbody>
+                <tfoot>
+                  <tr class="gets-tr" id="gets-last-tr">
+                    <td class="gets-example"><p>Total potential cost / value</p></td>
+                    <td class="cost-to-them"></td>
+                    <td class="monetized-cost"><p class="total-cost-to-them"></p></td>
+                    <td class="value-to-us"></td>
+                    <td class="monetized-value"></td>
+                  </tr>
+                </tfoot>
+
               </table>
               <button class="btn grey grey-bg mt-05 add-gets-btn">+ Add row</button>
             </div>

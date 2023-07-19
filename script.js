@@ -383,7 +383,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-cost"><textarea class="w-100"></textarea></td>
+      <td class="monetized-cost"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
       <td class="value-to-us">
         <select class="w-100">
           <option value="" selected="" disabled="" hidden="">Select</option>
@@ -394,7 +394,7 @@ function createGetRow() {
           <option class="text-green">5 - High</option>
         </select>
       </td>
-      <td class="monetized-value"><textarea class="w-100"></textarea></td>
+      <td class="monetized-value"><input class="money-input w-100" type="number" name="mc-value" oninput="this.value = this.value.replace(/^0+/, '')"></td>
       <td class="actions d-flex items-center justify-center cursor-pointer">
         <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
       </td>
@@ -403,6 +403,18 @@ function createGetRow() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
+
+  // var moneyInputs = document.querySelectorAll('.money-input');
+  // moneyInputs.forEach(moneyInput => {
+  //   moneyInput.addEventListener('blur', function () {
+  //     var cleanValue = this.value.replace(/,/g, '');
+  //     this.value = addCommas(cleanValue);
+  //   });
+  //   moneyInput.addEventListener('focus', function () {
+  //     this.value = this.value.replace(/,/g, '');
+  //   });
+  // });
+
   // Add event listeners to the select elements to update classes
   var trElement = tbodyGets.lastElementChild;
   var selectElements = trElement.querySelectorAll('select');
@@ -410,6 +422,7 @@ function createGetRow() {
   selectElements.forEach(function (selectElement) {
     selectElement.addEventListener('change', UpdateSelectColor);
   });
+
 }
 
 const tcTriggers = document.querySelectorAll('.tc-trigger');
@@ -468,8 +481,6 @@ window.onload = function () {
   showContent('all');
 };
 
-
-
 // Attach event listeners to the ideas-content elements
 var ideasContent = document.getElementsByClassName("ideas-content");
 for (var i = 0; i < ideasContent.length; i++) {
@@ -502,9 +513,7 @@ for (var i = 0; i < ideasContent.length; i++) {
       // Add the ideas-content's content to the textarea
       emptyTextarea.value = this.textContent;
     }
-
     closeModal(event)
-
   });
 }
 
@@ -532,3 +541,32 @@ function filterIdeas() {
     }
   }
 }
+
+// var moneyInputs = document.querySelectorAll('.money-input');
+
+// document.addEventListener('DOMContentLoaded', triggerAddCommas())
+// function triggerAddCommas() {
+//   moneyInputs.forEach(function (moneyInput) {
+//     moneyInput.addEventListener('blur', function () {
+//       var cleanValue = this.value.replace(/,/g, '');
+//       this.value = addCommas(cleanValue);
+//     });
+//     moneyInput.addEventListener('focus', function () {
+//       this.value = this.value.replace(/,/g, '');
+//     });
+//   });
+// };
+
+// function addCommas(nStr) {
+//   nStr += '';
+//   const x = nStr.split('.');
+//   let x1 = x[0];
+//   const x2 = x.length > 1 ? '.' + x[1] : '';
+//   const rgx = /(\d+)(\d{3})/;
+//   while (rgx.test(x1)) {
+//     x1 = x1.replace(rgx, '\$1' + '.' + '\$2');
+//   }
+//   return x1 + x2;
+// }
+
+
