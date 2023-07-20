@@ -581,7 +581,8 @@ h3 { color: black; }
 .leverage-icon {height: 7rem;}
 
 .w-38 { width: 38%;}
-.cost-to-them, .monetized-cost, .value-to-us, .monetized-value { width: 20rem;}
+.cost-to-them, .value-to-us { width: 19.2rem;}
+.monetized-cost, .monetized-value { width: 17rem;}
 .gets-example { width: calc( 100% - 87rem);}
 .gets-example p { margin: 0.75rem 0;}
 .tc-trigger { 
@@ -670,3 +671,4 @@ h3 { color: black; }
 .idea-top-text {
   padding: 2rem 2rem 0 2rem;
 }
+tfoot td { background-color: var(--lightGrey);}

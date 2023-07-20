@@ -586,7 +586,7 @@ function addCommas(nStr) {
   }
   return x1 + x2;
 }
-const totalSumWrapper = document.getElementById("total-cost-to-them")
+const totalSumWrapper = document.getElementById("total-gets-monetized-cost")
 
 function totalSum(arr) {
   let sum = arr.map(x => x.value).filter(x => x !== "").map(x => parseInt(x.replaceAll(",", ""))).reduce((a, b) => a + b, 0)
