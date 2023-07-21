@@ -658,14 +658,14 @@ h3 { color: black; }
   padding: 2rem;
 }
 
-#searchIdeasBar {
+#searchIdeasBar, #searchIdeasBar2 {
   margin: 1rem 2rem 0.5rem 2rem; 
   height: 35px;
   min-height: 35px;
   width: calc(100% - 4rem);
 }
 .ideas-wrapper {
-  height: 40rem;
+  height: 30rem;
   overflow-y: scroll;
   border: 1px solid var(--grey);
   margin: 0 2rem 2rem 2rem;

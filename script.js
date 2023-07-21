@@ -470,7 +470,8 @@ for (const closeIdeasBtn of closeIdeasBtns) {
 function closeModal(event) {
   const closeIdeasBtn = event.currentTarget;
   const overlaywrapper = closeIdeasBtn.closest('.tc-modal-overlay');
-  overlaywrapper.style.display = "none"
+  overlaywrapper.style.display = "none";
+  showContent('all');
 }
 
 function showContent(tab) {
@@ -536,12 +537,12 @@ for (var i = 0; i < ideasContent.length; i++) {
 }
 
 var searchBarIdeas = document.getElementById('searchIdeasBar');
-// var searchBarIdeas2 = document.getElementById('searchIdeasBar2');
+var searchBarIdeas2 = document.getElementById('searchIdeasBar2');
 
-searchBarIdeas.addEventListener('keyup', filterIdeas);
-// searchBarIdeas2.addEventListener('keyup', filterIdeas);
-function filterIdeas() {
-  var filterValue = searchBarIdeas.value.toUpperCase();
+searchBarIdeas.addEventListener('keyup', () => filterIdeas(searchBarIdeas));
+searchBarIdeas2.addEventListener('keyup', () => filterIdeas(searchBarIdeas2));
+function filterIdeas(filter) {
+  var filterValue = filter.value.toUpperCase();
   var ideas = document.getElementsByClassName('ideas-content');
   for (var i = 0; i < ideas.length; i++) {
     var idea = ideas[i];
