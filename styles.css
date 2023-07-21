@@ -626,14 +626,16 @@ h3 { color: black; }
   border-top-right-radius: 0.5rem;
   font-size: 1.4rem;
   font-weight: 500;
+  font-family: "Montserrat", sans-serif;
 }
 .ideas-tabs button.ideas-active-tab {
   background-color: var(--white);
   color: var(--darkBlue);
 }
 .ideas-content {
-  padding: 10px 20px;
+  padding: 1.2rem;
   cursor: pointer;
+  color: var(--darkGrey);
 }
 
 .close-idea-modal {

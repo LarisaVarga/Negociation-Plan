@@ -408,8 +408,8 @@ function createGetRow() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
-  totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-  totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+  totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+  totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
 
   var moneyInputs = document.querySelectorAll('.money-input');
   moneyInputs.forEach(moneyInput => {
@@ -418,12 +418,12 @@ function createGetRow() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-      totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+      totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+      totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
-      // totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
+      // totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')));
     });
   });
 
@@ -570,8 +570,8 @@ function triggerAddCommas() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalSum(monetizedCostsArr, totalGetsMC)
-      totalSum(monetizedValueArr, totalGetsMV)
+      totalGetsSum(monetizedCostsArr, totalGetsMC)
+      totalGetsSum(monetizedValueArr, totalGetsMV)
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
@@ -593,7 +593,7 @@ function addCommas(nStr) {
 
 
 
-function totalSum(arr, total) {
+function totalGetsSum(arr, total) {
   let sum = arr.map(x => x.value).filter(x => x !== "").map(x => parseInt(x.replaceAll(",", ""))).reduce((a, b) => a + b, 0)
   total.innerHTML = '$' + addCommas(sum)
 }
@@ -602,7 +602,7 @@ document.addEventListener('click', function (event) {
   if (event.target && event.target.classList.contains('delete-trading-tr')) {
     var row = event.target.closest('tr');
     row.remove();
-    totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-    totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+    totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+    totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
   }
 });
