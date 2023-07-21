@@ -339,12 +339,16 @@ function createCustomVariable() {
   tbodyMainVariables.appendChild(clon);
 }
 
-
-// Add event listeners to the select elements to update classes
 var tbodyGets = document.getElementById('gets-table-body')
 var getsSelectElements = tbodyGets.querySelectorAll('select');
 getsSelectElements.forEach(function (getsSelectElement) {
   getsSelectElement.addEventListener('change', UpdateSelectColor);
+});
+// Gives table functions
+var tbodyGives = document.getElementById('gives-table-body')
+var givesSelectElements = tbodyGives.querySelectorAll('select');
+givesSelectElements.forEach(function (givesSelectElement) {
+  givesSelectElement.addEventListener('change', UpdateSelectColor);
 });
 
 function UpdateSelectColor() {
@@ -363,16 +367,25 @@ function UpdateSelectColor() {
 }
 
 const createGetBtn = document.querySelector(".add-gets-btn");
+const createGivesBtn = document.querySelector(".add-gives-btn");
 var totalGetsMC = document.getElementById("total-gets-monetized-cost")
 totalGetsMC.innerHTML = '$0'
 var totalGetsMV = document.getElementById("total-gets-monetized-value")
 totalGetsMV.innerHTML = '$0'
+var totalGivesMC = document.getElementById("total-gives-monetized-cost")
+totalGivesMC.innerHTML = '$0'
+var totalGivesMV = document.getElementById("total-gives-monetized-value")
+totalGivesMV.innerHTML = '$0'
 
 if (createGetBtn) {
-  createGetBtn.addEventListener("click", createGetRow);
+  createGetBtn.addEventListener("click", () => createTCRow(tbodyGets));
 }
 
-function createGetRow() {
+if (createGivesBtn) {
+  createGivesBtn.addEventListener("click", () => createTCRow(tbodyGives));
+}
+
+function createTCRow(tableBody) {
   let temp = document.createElement('template');
   var number = Math.floor(Math.random() * 1000);
   temp.innerHTML = `
@@ -407,9 +420,12 @@ function createGetRow() {
   `;
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
-  tbodyGets.appendChild(clon);
-  totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-  totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+  tableBody.appendChild(clon);
+
+  totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
+  totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mv')), totalGetsMV);
+  totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mc')), totalGivesMC);
+  totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mv')), totalGivesMV);
 
   var moneyInputs = document.querySelectorAll('.money-input');
   moneyInputs.forEach(moneyInput => {
@@ -418,19 +434,19 @@ function createGetRow() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-      totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mv')), totalGetsMV);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mc')), totalGivesMC);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mv')), totalGivesMV);
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
-      // totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')));
     });
   });
 
   // Add event listeners to the select elements to update classes
-  var trElement = tbodyGets.lastElementChild;
+  var trElement = tableBody.lastElementChild;
   var selectElements = trElement.querySelectorAll('select');
-  /* Negociation Plan */
   selectElements.forEach(function (selectElement) {
     selectElement.addEventListener('change', UpdateSelectColor);
   });
@@ -491,61 +507,47 @@ window.onload = function () {
   showContent('all');
 };
 
-// Attach event listeners to the ideas-content elements
 var ideasContent = document.getElementsByClassName("ideas-content");
 for (var i = 0; i < ideasContent.length; i++) {
   ideasContent[i].addEventListener("click", function (event) {
-    // Find the first empty gets-example element
-    // var tableBody = document.querySelector("#gets-table-body");
     var examples = tbodyGets.querySelectorAll(".gets-example");
     var emptyTextarea = null;
 
     for (var j = 0; j < examples.length; j++) {
-      // Find the textarea inside the td
       var textarea = examples[j].querySelector("textarea");
-      // Check if the textarea is empty
       if (textarea && !textarea.value) {
         emptyTextarea = textarea;
         break;
       }
     }
-    // If there are no empty textareas, create a new row
     if (!emptyTextarea) {
-      createGetRow();
+      createTCRow(tbodyGets);
       // After creating the new row, get the textarea in the last row
       var allRows = tbodyGets.querySelectorAll(".gets-tr");
       var lastRow = allRows[allRows.length - 1];
       var textareaInLastRow = lastRow.querySelector(".gets-example textarea");
 
-      // Add the ideas-content's content to the textarea in the new row
       textareaInLastRow.value = this.textContent;
     } else {
-      // Add the ideas-content's content to the textarea
       emptyTextarea.value = this.textContent;
     }
     closeModal(event)
   });
 }
 
+var searchBarIdeas = document.getElementById('searchIdeasBar');
+// var searchBarIdeas2 = document.getElementById('searchIdeasBar2');
 
-// Get the input field
-var input = document.getElementById('searchIdeasBar');
-
-// Listen for keystrokes
-input.addEventListener('keyup', filterIdeas);
+searchBarIdeas.addEventListener('keyup', filterIdeas);
+// searchBarIdeas2.addEventListener('keyup', filterIdeas);
 function filterIdeas() {
-  // Get the filter value
-  var filterValue = input.value.toUpperCase();
-  // Get the ideas
+  var filterValue = searchBarIdeas.value.toUpperCase();
   var ideas = document.getElementsByClassName('ideas-content');
-  // Loop through all the ideas and hide those that don't match the search query
   for (var i = 0; i < ideas.length; i++) {
     var idea = ideas[i];
     if (idea.textContent.toUpperCase().indexOf(filterValue) > -1) {
       idea.style.display = '';
-    } else {
-      idea.style.display = 'none';
-    }
+    } else { idea.style.display = 'none'; }
   }
 }
 
@@ -559,10 +561,6 @@ function preventNonNumericalAndZeroFirstInput(e) {
     e.preventDefault();
   }
 }
-var monetizedCosts = document.querySelectorAll('.money-input.mc');
-var monetizedCostsArr = Array.from(monetizedCosts)
-var monetizedValue = document.querySelectorAll('.money-input.mv');
-var monetizedValueArr = Array.from(monetizedValue)
 
 document.addEventListener('DOMContentLoaded', triggerAddCommas())
 function triggerAddCommas() {
@@ -570,8 +568,10 @@ function triggerAddCommas() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalGetsSum(monetizedCostsArr, totalGetsMC)
-      totalGetsSum(monetizedValueArr, totalGetsMV)
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mv')), totalGetsMV);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mc')), totalGivesMC);
+      totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mv')), totalGivesMV);
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
@@ -591,9 +591,7 @@ function addCommas(nStr) {
   return x1 + x2;
 }
 
-
-
-function totalGetsSum(arr, total) {
+function totalTCTCostsSum(arr, total) {
   let sum = arr.map(x => x.value).filter(x => x !== "").map(x => parseInt(x.replaceAll(",", ""))).reduce((a, b) => a + b, 0)
   total.innerHTML = '$' + addCommas(sum)
 }
@@ -602,7 +600,9 @@ document.addEventListener('click', function (event) {
   if (event.target && event.target.classList.contains('delete-trading-tr')) {
     var row = event.target.closest('tr');
     row.remove();
-    totalGetsSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
-    totalGetsSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+    totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
+    totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mv')), totalGetsMV);
+    totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mc')), totalGivesMC);
+    totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mv')), totalGivesMV);
   }
 });
