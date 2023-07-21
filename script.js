@@ -101,8 +101,6 @@ document.addEventListener('click', function (event) {
   if (event.target && event.target.classList.contains('delete-tr-icon')) {
     var row = event.target.closest('tr');
     row.remove();
-    totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
-    // console.log(Array.from(document.querySelectorAll('.money-input.mc')))
   }
 });
 
@@ -365,6 +363,10 @@ function UpdateSelectColor() {
 }
 
 const createGetBtn = document.querySelector(".add-gets-btn");
+var totalGetsMC = document.getElementById("total-gets-monetized-cost")
+totalGetsMC.innerHTML = '$0'
+var totalGetsMV = document.getElementById("total-gets-monetized-value")
+totalGetsMV.innerHTML = '$0'
 
 if (createGetBtn) {
   createGetBtn.addEventListener("click", createGetRow);
@@ -406,7 +408,8 @@ function createGetRow() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.gets-tr').id = number;
   tbodyGets.appendChild(clon);
-  totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
+  totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+  totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
 
   var moneyInputs = document.querySelectorAll('.money-input');
   moneyInputs.forEach(moneyInput => {
@@ -415,11 +418,12 @@ function createGetRow() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
+      totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+      totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
-      totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
+      // totalSum(Array.from(document.querySelectorAll('.money-input.mc')));
     });
   });
 
@@ -452,7 +456,6 @@ function closeModal(event) {
   const overlaywrapper = closeIdeasBtn.closest('.tc-modal-overlay');
   overlaywrapper.style.display = "none"
 }
-
 
 function showContent(tab) {
   // Remove the active class from all buttons
@@ -547,7 +550,6 @@ function filterIdeas() {
 }
 
 var moneyInputs = document.querySelectorAll('.money-input');
-
 moneyInputs.forEach(moneyInput => {
   moneyInput.addEventListener('keypress', preventNonNumericalAndZeroFirstInput);
 });
@@ -559,7 +561,8 @@ function preventNonNumericalAndZeroFirstInput(e) {
 }
 var monetizedCosts = document.querySelectorAll('.money-input.mc');
 var monetizedCostsArr = Array.from(monetizedCosts)
-
+var monetizedValue = document.querySelectorAll('.money-input.mv');
+var monetizedValueArr = Array.from(monetizedValue)
 
 document.addEventListener('DOMContentLoaded', triggerAddCommas())
 function triggerAddCommas() {
@@ -567,7 +570,8 @@ function triggerAddCommas() {
     moneyInput.addEventListener('blur', function () {
       var cleanValue = this.value.replace(/,/g, '');
       this.value = addCommas(cleanValue);
-      totalSum(monetizedCostsArr)
+      totalSum(monetizedCostsArr, totalGetsMC)
+      totalSum(monetizedValueArr, totalGetsMV)
     });
     moneyInput.addEventListener('focus', function () {
       this.value = this.value.replace(/,/g, '');
@@ -586,9 +590,19 @@ function addCommas(nStr) {
   }
   return x1 + x2;
 }
-const totalSumWrapper = document.getElementById("total-gets-monetized-cost")
 
-function totalSum(arr) {
+
+
+function totalSum(arr, total) {
   let sum = arr.map(x => x.value).filter(x => x !== "").map(x => parseInt(x.replaceAll(",", ""))).reduce((a, b) => a + b, 0)
-  totalSumWrapper.innerHTML = '$' + addCommas(sum)
+  total.innerHTML = '$' + addCommas(sum)
 }
+
+document.addEventListener('click', function (event) {
+  if (event.target && event.target.classList.contains('delete-trading-tr')) {
+    var row = event.target.closest('tr');
+    row.remove();
+    totalSum(Array.from(document.querySelectorAll('.money-input.mc')), totalGetsMC);
+    totalSum(Array.from(document.querySelectorAll('.money-input.mv')), totalGetsMV);
+  }
+});
