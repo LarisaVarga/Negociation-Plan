@@ -389,8 +389,8 @@ function createTCRow(tableBody) {
   let temp = document.createElement('template');
   var number = Math.floor(Math.random() * 1000);
   temp.innerHTML = `
-    <tr class="gets-tr">
-      <td class="gets-example"><textarea class="w-100"></textarea></td>
+    <tr class="tc-tr">
+      <td class="tc-tr-text"><textarea class="w-100"></textarea></td>
       <td class="cost-to-them">
         <select class="w-100">
           <option value="" selected="" disabled="" hidden="">Select</option>
@@ -414,12 +414,12 @@ function createTCRow(tableBody) {
       </td>
       <td class="monetized-value"><input class="money-input mv w-100" type="text" name="mc-value"></td>
       <td class="actions d-flex items-center justify-center cursor-pointer">
-        <img class="delete-tr-icon" src="./icons/blue-delete-btn.svg" alt="Delete table row">
+        <img class="delete-trading-tr" src="./icons/blue-delete-btn.svg" alt="Delete table row">
       </td>
     </tr>
   `;
   let clon = temp.content.cloneNode(true);
-  clon.querySelector('.gets-tr').id = number;
+  clon.querySelector('.tc-tr').id = number;
   tableBody.appendChild(clon);
 
   totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
@@ -508,12 +508,11 @@ window.onload = function () {
   showContent('all');
 };
 
-var ideasContent = document.getElementsByClassName("ideas-content");
-for (var i = 0; i < ideasContent.length; i++) {
-  ideasContent[i].addEventListener("click", function (event) {
-    var examples = tbodyGets.querySelectorAll(".gets-example");
+var getsIdeasContent = document.querySelectorAll(".gets-section .ideas-content");
+for (var i = 0; i < getsIdeasContent.length; i++) {
+  getsIdeasContent[i].addEventListener("click", function (event) {
+    var examples = tbodyGets.querySelectorAll(".tc-tr-text");
     var emptyTextarea = null;
-
     for (var j = 0; j < examples.length; j++) {
       var textarea = examples[j].querySelector("textarea");
       if (textarea && !textarea.value) {
@@ -523,11 +522,34 @@ for (var i = 0; i < ideasContent.length; i++) {
     }
     if (!emptyTextarea) {
       createTCRow(tbodyGets);
-      // After creating the new row, get the textarea in the last row
-      var allRows = tbodyGets.querySelectorAll(".gets-tr");
+      var allRows = tbodyGets.querySelectorAll(".tc-tr");
       var lastRow = allRows[allRows.length - 1];
-      var textareaInLastRow = lastRow.querySelector(".gets-example textarea");
+      var textareaInLastRow = lastRow.querySelector(".tc-tr-text textarea");
+      textareaInLastRow.value = this.textContent;
+    } else {
+      emptyTextarea.value = this.textContent;
+    }
+    closeModal(event)
+  });
+}
 
+var givesIdeasContent = document.querySelectorAll(".gives-section .ideas-content");
+for (var i = 0; i < givesIdeasContent.length; i++) {
+  givesIdeasContent[i].addEventListener("click", function (event) {
+    var examples = tbodyGives.querySelectorAll(".gives-example");
+    var emptyTextarea = null;
+    for (var j = 0; j < examples.length; j++) {
+      var textarea = examples[j].querySelector("textarea");
+      if (textarea && !textarea.value) {
+        emptyTextarea = textarea;
+        break;
+      }
+    }
+    if (!emptyTextarea) {
+      createTCRow(tbodyGives);
+      var allRows = tbodyGives.querySelectorAll(".tc-tr");
+      var lastRow = allRows[allRows.length - 1];
+      var textareaInLastRow = lastRow.querySelector(".tc-tr-text textarea");
       textareaInLastRow.value = this.textContent;
     } else {
       emptyTextarea.value = this.textContent;
@@ -599,7 +621,7 @@ function totalTCTCostsSum(arr, total) {
 
 document.addEventListener('click', function (event) {
   if (event.target && event.target.classList.contains('delete-trading-tr')) {
-    var row = event.target.closest('tr');
+    var row = event.target.closest('.tc-tr');
     row.remove();
     totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mc')), totalGetsMC);
     totalTCTCostsSum(Array.from(document.querySelectorAll('#gets-table .money-input.mv')), totalGetsMV);

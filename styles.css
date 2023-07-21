@@ -583,8 +583,8 @@ h3 { color: black; }
 .w-38 { width: 38%;}
 .cost-to-them, .value-to-us { width: 19.2rem;}
 .monetized-cost, .monetized-value { width: 17rem;}
-.gets-example, .gives-example { width: calc( 100% - 87rem);}
-.gets-example p, .gives-example p { margin: 0.75rem 0;}
+.tc-tr-text { width: calc( 100% - 87rem);}
+.tc-tr-text p { margin: 0.75rem 0;}
 .tc-trigger { 
   padding: 0.4rem 1rem;
   display: flex;
