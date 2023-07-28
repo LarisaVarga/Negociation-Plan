@@ -550,7 +550,7 @@ for (var i = 0; i < getsIdeasContent.length; i++) {
 var givesIdeasContent = document.querySelectorAll(".gives-section .ideas-content");
 for (var i = 0; i < givesIdeasContent.length; i++) {
   givesIdeasContent[i].addEventListener("click", function (event) {
-    var examples = tbodyGives.querySelectorAll(".gives-example");
+    var examples = tbodyGives.querySelectorAll(".tc-tr-text");
     var emptyTextarea = null;
     for (var j = 0; j < examples.length; j++) {
       var textarea = examples[j].querySelector("textarea");
