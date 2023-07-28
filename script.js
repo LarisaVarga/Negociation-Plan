@@ -174,6 +174,19 @@ function allowUncheck(e) {
 }
 
 /* Negociation Plan */
+
+function resizeTextareas() {
+  const texareas = document.getElementsByTagName("textarea");
+  for (let i = 0; i < texareas.length; i++) {
+    texareas[i].addEventListener("input", OnInput, false);
+  }
+  function OnInput() {
+    this.style.height = 0;
+    this.style.height = (this.scrollHeight) + "px";
+  }
+}
+
+
 var commercialCircles = document.querySelectorAll('.commercial-circle');
 
 for (let i = 0; i < commercialCircles.length; i++) {
@@ -337,6 +350,7 @@ function createCustomVariable() {
   let clon = temp.content.cloneNode(true);
   clon.querySelector('.main-variable-tr').id = number;
   tbodyMainVariables.appendChild(clon);
+  resizeTextareas()
 }
 
 var tbodyGets = document.getElementById('gets-table-body')
