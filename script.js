@@ -494,8 +494,11 @@ function showContent(tab) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("ideas-active-tab");
   }
-  // Add the active class to the clicked button
-  document.querySelector(".ideas-tabs button[data-tab='" + tab + "']").classList.add("ideas-active-tab");
+
+  var ideasTabs = document.querySelectorAll(".ideas-tabs button[data-tab='" + tab + "']");
+  for (var i = 0; i < ideasTabs.length; i++) {
+    ideasTabs[i].classList.add("ideas-active-tab");
+  }
 
   // Hide all content divs
   var ideasContent = document.getElementsByClassName("ideas-content");
