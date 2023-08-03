@@ -247,7 +247,7 @@
 .asterix.orange { color: var(--orange); }
 .OSO-item { font-size: 1.4rem;}
 
-/* Negociation Plan */
+/* Negotiation Plan */
 
 #our-team-members-table, #their-key-players-table, #deal-sheet-table, #gets-table, #gives-table {
   text-align: left;
@@ -268,7 +268,7 @@
 }
 #our-team-members-table td, #their-key-players-table td, #deal-sheet-table td, #gets-table td, #gives-table td { padding: 5px }
 
-/* Negociation Plan */
+/* Negotiation Plan */
 
 .actions { 
   width: 7rem;
@@ -460,7 +460,7 @@ object { pointer-events: none; }
 h3 { color: black; }
 
 
-/* Negociation Plan */
+/* Negotiation Plan */
 
 .circle-title {
   text-align: center;

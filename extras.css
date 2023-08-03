@@ -120,7 +120,7 @@ a, a:visited {
 }
 .section-content h4, .section-content h3, .section-content span, .section-content div, .section-content p { font-family: "Montserrat", sans-serif;}
 
-/* Negociation Plan */
+/* Negotiation Plan */
 .video-overlay, .delete-member-overlay, .tc-modal-overlay {
   position: fixed; 
   display: none; 
@@ -279,7 +279,7 @@ a, a:visited {
 .text-green { color: var(--light-green)}
 
 
-/* Negociation Plan */
+/* Negotiation Plan */
 .w-30 { width: 30%;}
 .w-40 { width: 40%;}
 .text-center { text-align: center;}

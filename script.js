@@ -148,7 +148,7 @@ function createKeyPlayerRow() {
   // Add event listeners to the select elements to update classes
   var trElement = tbodyKeyPlayers.lastElementChild;
   var selectElements = trElement.querySelectorAll('select');
-  /* Negociation Plan */
+  /* Negotiation Plan */
   selectElements.forEach(function (selectElement) {
     selectElement.addEventListener('change', UpdateSelectColor);
   });
@@ -173,7 +173,7 @@ function allowUncheck(e) {
     });
 }
 
-/* Negociation Plan */
+/* Negotiation Plan */
 
 function resizeTextareas() {
   const texareas = document.getElementsByTagName("textarea");

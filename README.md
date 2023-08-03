@@ -1,1 +1,1 @@
-# Negociation-Plan
+# Negotiation-Plan
