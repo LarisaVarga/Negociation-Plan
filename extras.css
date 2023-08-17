@@ -92,9 +92,11 @@ input, textarea, select {
   height: 38px;/* ASP */
 }
 input::placeholder, textarea::placeholder { 
-  opacity: 0.8;
+  opacity: 0.7;
   color: var(--darkGrey); /* ASP */
+  font-style: italic; /* Negotiation Plan */
 } 
+
 textarea {
   resize: none;
   overflow: hidden;
