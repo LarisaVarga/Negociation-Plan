@@ -674,3 +674,7 @@ h3 { color: black; }
   padding: 2rem 2rem 0 2rem;
 }
 tfoot td { background-color: var(--lightGrey);}
+
+textarea::placeholder {
+   font-style: italic;
+}
