@@ -675,7 +675,3 @@ h3 { color: black; }
 }
 tfoot td { background-color: var(--lightGrey);}
 
-textarea::placeholder {
-   font-style: italic;
-   opacity: 0.5;
-}
