@@ -675,3 +675,7 @@ h3 { color: black; }
 }
 tfoot td { background-color: var(--lightGrey);}
 
+
+/* use this to fix  PCP Manager Review*/
+.mg-wrapper { display: flex;}
+.mg-wrapper .checkmark, .mg-wrapper .meets input[type="radio"], .mg-wrapper .gap input[type="radio"] { transform: translate(-50%,-50%); left: 50%;} 

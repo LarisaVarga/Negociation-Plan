@@ -646,3 +646,32 @@ document.addEventListener('click', function (event) {
     totalTCTCostsSum(Array.from(document.querySelectorAll('#gives-table .money-input.mv')), totalGivesMV);
   }
 });
+
+// use this to fix  PCP Manager Review
+
+// Get all parent elements
+const negotiationMGParents = document.querySelectorAll('.mg-wrapper');
+
+// Loop through each parent and add event listeners
+negotiationMGParents.forEach((negotiationMGParent) => {
+  const radios = negotiationMGParent.querySelectorAll('input[type=radio].uncheck-possible');
+
+  radios.forEach((radio) => {
+    radio.addEventListener('click', allowUncheck);
+    radio.previous = radio.checked;
+  });
+});
+
+function allowUncheck() {
+  if (this.previous) {
+    this.checked = false;
+  }
+
+  const radiosWithName = document.querySelectorAll(
+    `input[type=radio].uncheck-possible[name="${ this.name }"]`
+  );
+
+  radiosWithName.forEach((radio) => {
+    radio.previous = radio.checked;
+  });
+}
