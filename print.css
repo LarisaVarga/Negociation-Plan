@@ -237,7 +237,7 @@
   #meeting-date {
     width: auto;
   }
-  #account {
+  #account, #np-ccount { /* Negotiation Plan */
     width: calc(100% - 5.3rem);
   }
   #key-contact {
@@ -571,7 +571,7 @@
   }
 
   #rep-name,
-  #m-account {
+  #m-account, #np-rep-name {/* Negotiation Plan */
     width: calc(100% - 5.8rem);
   }
   #m-meeting-date {

@@ -124,14 +124,14 @@
 }
 
 
-#account { width: calc( 100% - 9.5rem ); }
+#account, #np-ccount { width: calc( 100% - 9.5rem ); } /* Negotiation Plan */
 #meeting-date { width: calc( 100% - 8.7rem ); }
 #strategic-objective { width: calc( 100% - 22.2rem ); }
 
 #other-contact, #key-contact { width: calc( 100% - 23.3rem ); }
 #meeting-lead, #meeting-coach, #meeting-date { width: calc( 100% - 15.6rem ); }
 
-#opening{ min-height: 5rem; }
+#opening { min-height: 5rem; }
 #draft-proposal { min-height: 3rem; }
 #carrots, #sticks { width: calc( 100% - 11rem ); }
 #ra, #oa { width: calc( 100% - 21rem ); }
@@ -311,7 +311,7 @@
 /* manager reviews */
 
 #m-account { width: calc( 100% - 9rem ); }
-#rep-name { width: calc( 100% - 10rem ); }
+#rep-name, #np-rep-name { width: calc( 100% - 10rem ); }/* Negotiation Plan */
 #m-meeting-date { width: 22rem }
 
 .section-subtitle {
