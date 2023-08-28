@@ -462,12 +462,12 @@ h3 { color: black; }
 
 /* Negotiation Plan */
 
+.circles-title-wrapper { display: flex; justify-content: center;}
 .circle-title {
-  text-align: center;
-  letter-spacing: 10px;
   margin-bottom: 1rem;
   color: var(--blue);
 }
+.circle-title .cc-text { letter-spacing: 10px;}
 .circle-title.orange { color: var(--orange);}
 
 .personal-circles-wrapper, .commercial-circles-wrapper {

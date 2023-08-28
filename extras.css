@@ -287,3 +287,6 @@ a, a:visited {
 .text-center { text-align: center;}
 .text-darkgrey { color: var(--darkGrey);}
 .uppercase { text-transform: uppercase;}
+.helper-text { text-align: left;}
+.helper-text.move-more-to-left { transform:translateX(-60%); }
+.helper-text.move-less-to-left { transform:translateX(-25%); }
