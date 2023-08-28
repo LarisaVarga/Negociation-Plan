@@ -650,11 +650,11 @@ document.addEventListener('click', function (event) {
 // use this to fix  PCP Manager Review
 
 // Get all parent elements
-const negotiationMGParents = document.querySelectorAll('.mg-wrapper');
+const MGMGParents = document.querySelectorAll('.mg-wrapper');
 
 // Loop through each parent and add event listeners
-negotiationMGParents.forEach((negotiationMGParent) => {
-  const radios = negotiationMGParent.querySelectorAll('input[type=radio].uncheck-possible');
+MGMGParents.forEach((MGMGParent) => {
+  const radios = MGMGParent.querySelectorAll('input[type=radio].uncheck-possible');
 
   radios.forEach((radio) => {
     radio.addEventListener('click', allowUncheck);
